@@ -1,0 +1,44 @@
+body {
+    background-color: #ffffff; /* Fundal alb */
+    margin: 0; /* Elimină marginea implicită */
+    padding: 0; /* Elimină padding-ul implicit */
+    font-family: Arial, sans-serif; /* Setează un font pentru pagină */
+}
+
+.App {
+    text-align: center;
+    /*padding: 20px;*/
+}
+
+h2 {
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+h3 {
+    color: #007bff;
+    margin-bottom: 20px;
+
+}
+
+p {
+    color: #555;
+    margin-bottom: 20px;
+}
+
+
+/*label {*/
+/*    display: block;*/
+/*    margin-bottom: 5px;*/
+/*    font-weight: bold;*/
+/*    color: #333;*/
+/*}*/
+
+
+/*input {*/
+/*    width: 100%;*/
+/*    padding: 8px;*/
+/*    border: 1px solid #ddd;*/
+/*    border-radius: 4px;*/
+/*    box-sizing: border-box;*/
+/*}*/

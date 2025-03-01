@@ -1,0 +1,75 @@
+/* CSS pentru car-history-container care se întinde pe întreaga pagină */
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa; /* Fundal general */
+}
+
+.car-history-container {
+    padding: 40px 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 2000px;
+    margin: 0 auto; /* Centrare pe orizontală */
+    min-height: 100vh; /* Se întinde până josul paginii */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Aliniere conținut la început */
+    box-sizing: border-box; /* Include padding în dimensiune */
+}
+
+.car-history-header {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #007bff;
+    text-align: center;
+}
+
+.message {
+    font-size: 1.2em;
+    color: #555;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.message.error {
+    color: #d9534f;
+}
+
+.message.loading {
+    color: #0275d8;
+}
+
+.payment-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.payment-item {
+    display: flex;
+    flex-direction: column;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.payment-item p {
+    margin: 5px 0;
+    font-size: 1em;
+    line-height: 1.5;
+    color: #333;
+}
+
+.payment-item hr {
+    border: none;
+    height: 1px;
+    background-color: #ddd;
+    margin: 10px 0;
+}

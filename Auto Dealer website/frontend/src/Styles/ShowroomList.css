@@ -1,0 +1,47 @@
+/* ShowroomList.css */
+
+/* Stilurile pentru containerul principal al listei de showroom-uri */
+.showroom-list2 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+}
+
+/* Titlul listei de showroom-uri */
+h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Container pentru fiecare showroom individual */
+.showroom-item-container2 {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Efect de hover pentru fiecare showroom individual */
+.showroom-item-container2:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Textul când nu există showroom-uri disponibile */
+.showroom-list p {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #666;
+    width: 100%;
+}

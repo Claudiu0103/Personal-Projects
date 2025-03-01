@@ -1,0 +1,89 @@
+/* CSS pentru componenta Order */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+html {
+    height: 100%;
+}
+
+.order-container {
+    flex: 1;
+    margin: 0;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.order-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.order-header h2 {
+    color: #333333;
+    font-size: 1.8em;
+    margin: 0;
+}
+
+.order-details {
+    margin-bottom: 20px;
+    color: #555555;
+    font-size: 1em;
+}
+
+.order-cars {
+    margin-top: 20px;
+}
+
+.order-car {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
+}
+
+.order-car img {
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.order-car-details {
+    flex: 1;
+    color: #333333;
+}
+
+.order-car-details p {
+    margin: 5px 0;
+}
+
+.back-button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.back-button:hover {
+    background-color: #0056b3;
+}

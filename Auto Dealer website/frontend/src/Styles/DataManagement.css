@@ -1,0 +1,80 @@
+/* Stil general pentru container */
+.DataManagement {
+    font-family: Arial, sans-serif;
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    text-align: center; /* Centrează conținutul */
+}
+
+/* Titlu */
+.DataManagement h2 {
+    font-size: 24px;
+    color: #007bff;
+    margin-bottom: 20px;
+}
+
+/* Text și etichete */
+.DataManagement p,
+.DataManagement label {
+    font-size: 16px;
+    color: #555;
+    margin: 10px 0;
+    display: block;
+    text-align: left; /* Text aliniat la stânga */
+}
+
+/* Câmpuri de input */
+.DataManagement input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 100%; /* Lățime completă */
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+.DataManagement input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Buton stilizat */
+.DataManagement button {
+    padding: 10px 30px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 24px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+}
+
+.DataManagement button:hover {
+    background-color: #0056b3;
+}
+
+/* Grup pentru mai multe butoane */
+.DataManagement .button-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.DataManagement button.cancel {
+    background-color: #6c757d;
+}
+
+.DataManagement button.cancel:hover {
+    background-color: #495057;
+}

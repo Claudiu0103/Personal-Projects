@@ -1,0 +1,65 @@
+.home {
+    min-height: 100vh; /* Ocupă cel puțin întreaga înălțime a viewport-ului */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Asigură că footer-ul este la bază */
+    background-color: #ffffff; /* Fundal alb */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow pentru design */
+    padding-bottom: 20px; /* Adaugă spațiu între conținut și footer */
+}
+
+/* Titlul Home */
+.home-title {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    font-size: 1em;
+}
+
+/* Conținutul Home */
+.home-content {
+    padding: 20px;
+    color: #555;
+    line-height: 1.6;
+    flex-grow: 1; /* Face ca secțiunea conținut să se extindă */
+}
+
+/* Grupul de Butoane */
+.button-group {
+    padding: 30px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    justify-items: center;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    height: 55px;
+    width: 250px;
+    max-width: 300px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Footer-ul */
+footer {
+    background-color: #ffffff; /* Fundal alb pentru footer */
+    color: black;
+    padding: 10px 0;
+    position: relative; /* Permite footer-ului să fie în fluxul paginii */
+    width: 100%;
+    text-align: center;
+    font-size: 0.9em;
+    margin-top: auto; /* Împinge footer-ul în jos dacă conținutul este insuficient */
+}

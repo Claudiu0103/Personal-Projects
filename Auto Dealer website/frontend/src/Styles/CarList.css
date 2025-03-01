@@ -1,0 +1,139 @@
+.car-list-container {
+    padding: 40px 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 1000px;
+    margin: 40px auto;
+    text-align: left;
+}
+
+.car-list-header {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #007bff;
+}
+
+.button-container {
+    align-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.buttonAddCar {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    font-size: 0.9em;
+    cursor: pointer;
+    margin-bottom: 10px;
+    transition: background-color 0.3s;
+}
+
+.buttonAddCar:hover {
+    background-color: #0056b3;
+}
+
+.car-item {
+    display: flex;
+    flex-direction: column; /* Elemente așezate pe verticală */
+    align-items: center; /* Aliniere centrată */
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Asigură lățimea completă */
+    box-sizing: border-box; /* Padding-ul nu afectează dimensiunea */
+}
+
+.car-image {
+    flex: 0 0 150px;
+    margin-right: 20px;
+}
+
+.car-image img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.car-details {
+    flex: 1;
+    text-align: left;
+}
+
+.button {
+    width: 180px;
+    height: 40px;
+    background-image: linear-gradient(rgb(214, 202, 254), rgb(158, 129, 254));
+    border: none;
+    border-radius: 50px;
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+    box-shadow: 1px 3px 0px rgb(139, 113, 255);
+    transition-duration: 0.3s;
+}
+
+.button-group2 {
+    display: flex;
+    flex-wrap: wrap; /* Asigură trecerea butoanelor pe un nou rând dacă nu încap */
+    gap: 10px; /* Spațiu între butoane */
+    justify-content: center; /* Centrare pe orizontală */
+    margin-top: 10px; /* Spațiu față de detaliile mașinii */
+}
+
+
+.cartIcon {
+    width: 14px;
+    height: fit-content;
+}
+
+.cartIcon path {
+    fill: white;
+}
+
+.button:active {
+    transform: translate(2px, 0px);
+    box-shadow: 0px 1px 0px rgb(139, 113, 255);
+    padding-bottom: 1px;
+}
+
+.filter-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.filter-container select,
+.filter-container input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.filter-container button {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.filter-container button:hover {
+    background-color: #0056b3;
+}
+
+
+
