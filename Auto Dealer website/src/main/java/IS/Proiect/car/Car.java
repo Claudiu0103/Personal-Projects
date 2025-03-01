@@ -1,5 +1,6 @@
 package IS.Proiect.car;
 
+import IS.Proiect.showroom.Showroom;
 import jakarta.persistence.*;
 
 @Entity
@@ -22,7 +23,12 @@ public class Car {
     private String vehicleType;
     private Integer price;
     private String color;
-    private Integer idShowroom;
+    @Column(length = 65535)
+    private String imageUrl;
+
+    @ManyToOne
+    @JoinColumn(name = "showroom_id", referencedColumnName = "idShowroom")
+    private Showroom showroom;
 
     public Car() {
 
@@ -35,7 +41,8 @@ public class Car {
                String vehicleType,
                Integer price,
                String color,
-               Integer idShowroom) {
+               String imageUrl,
+               Showroom showroom) {
         this.idCar = idCar;
         this.kilometers = kilometers;
         this.releaseDate = releaseDate;
@@ -43,7 +50,8 @@ public class Car {
         this.vehicleType = vehicleType;
         this.price = price;
         this.color = color;
-        this.idShowroom = idShowroom;
+        this.imageUrl = imageUrl;
+        this.showroom = showroom;
     }
 
     public Car(Integer kilometers,
@@ -52,14 +60,16 @@ public class Car {
                String vehicleType,
                Integer price,
                String color,
-               Integer idShowroom) {
+               String imageUrl,
+               Showroom showroom) {
         this.kilometers = kilometers;
         this.releaseDate = releaseDate;
         this.model = model;
         this.vehicleType = vehicleType;
         this.price = price;
         this.color = color;
-        this.idShowroom = idShowroom;
+        this.imageUrl = imageUrl;
+        this.showroom = showroom;
     }
 
     public Integer getIdCar() {
@@ -118,12 +128,20 @@ public class Car {
         this.color = color;
     }
 
-    public Integer getIdShowroom() {
-        return idShowroom;
+    public Showroom getShowroom() {
+        return showroom;
     }
 
-    public void setIdShowroom(Integer idShowroom) {
-        this.idShowroom = idShowroom;
+    public void setShowroom(Showroom showroom) {
+        this.showroom = showroom;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     @Override
@@ -131,12 +149,12 @@ public class Car {
         return "Car{" +
                 "idCar=" + idCar +
                 ", kilometers=" + kilometers +
-                ", releaseDate=" + releaseDate +
+                ", releaseDate='" + releaseDate + '\'' +
                 ", model='" + model + '\'' +
                 ", vehicleType='" + vehicleType + '\'' +
                 ", price=" + price +
                 ", color='" + color + '\'' +
-                ", idShowroom=" + idShowroom +
+                ", showroom=" + showroom +
                 '}';
     }
 }

@@ -37,6 +37,7 @@ public class User {
         this.Type = Type;
     }
 
+
     public Integer getIdUser() {
         return idUser;
     }
