@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.signup.Btn2">
+   <children>
+      <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #434DFA;">
+         <children>
+            <TableView fx:id="tableView" layoutX="34.0" layoutY="99.0" prefHeight="248.0" prefWidth="537.0" style="-fx-background-color: #FFFFFF;">
+              <columns>
+                <TableColumn fx:id="idColumn" prefWidth="53.19997978210449" text="ID" />
+                <TableColumn fx:id="nameColumn" prefWidth="97.20001983642578" text="Nume" />
+                  <TableColumn fx:id="addressColumn" prefWidth="94.20001220703125" text="Adresa" />
+                  <TableColumn fx:id="sexColumn" prefWidth="56.199981689453125" text="Sex" />
+                  <TableColumn fx:id="birthDateColumn" prefWidth="83.5999755859375" text="Data nasterii" />
+                  <TableColumn fx:id="netIncomeColumn" prefWidth="87.20001220703125" text="Castig net" />
+                  <TableColumn fx:id="currencyColumn" prefWidth="67.19998168945312" text="Moneda" />
+              </columns>
+            </TableView>
+            <Button fx:id="back" layoutX="34.0" layoutY="32.0" mnemonicParsing="false" text="Back" />
+         </children>
+      </AnchorPane>
+   </children>
+</Pane>

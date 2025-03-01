@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #97E314;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.signup.Btn7">
+   <children>
+      <TableView fx:id="tableView" layoutX="145.0" layoutY="100.0" prefHeight="200.0" prefWidth="305.0">
+        <columns>
+          <TableColumn fx:id="id_prod" prefWidth="95.19998168945312" text="ID producator" />
+          <TableColumn fx:id="nume_prod" prefWidth="117.4000244140625" text="Nume producator" />
+            <TableColumn fx:id="nr_filme" prefWidth="91.9999938964844" text="Nr. Filme SF" />
+        </columns>
+      </TableView>
+      <Button fx:id="back" layoutX="70.0" layoutY="34.0" mnemonicParsing="false" text="Back" />
+   </children>
+</AnchorPane>

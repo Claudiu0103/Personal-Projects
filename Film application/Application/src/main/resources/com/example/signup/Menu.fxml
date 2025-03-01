@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="402.0" prefWidth="601.0" style="-fx-background-color: #8CCE8E;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.signup.MenuController">
+  <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="320.0" minWidth="10.0" prefWidth="300.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="320.0" minWidth="10.0" prefWidth="300.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="388.99998474121094" minWidth="10.0" prefWidth="300.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Button fx:id="Button1" layoutX="74.0" layoutY="54.0" mnemonicParsing="false" text="Button1" />
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+         <children>
+            <Button fx:id="Button2" layoutX="74.0" layoutY="54.0" mnemonicParsing="false" text="Button2" />
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
+         <children>
+            <Button id="Button3" fx:id="Button3" layoutX="75.0" layoutY="54.0" mnemonicParsing="false" text="Button3" />
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+         <children>
+            <Button id="Button8" fx:id="Button8" layoutX="74.0" layoutY="55.0" mnemonicParsing="false" text="Button8" />
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <children>
+            <TextField layoutX="-2.0" layoutY="24.0" prefHeight="86.0" prefWidth="200.0" style="-fx-background-color: #8CCE8E;" text=" INFORMATII FILME">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </TextField>
+         </children></AnchorPane>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+         <children>
+            <Button id="Button4" fx:id="Button4" layoutX="75.0" layoutY="54.0" mnemonicParsing="false" text="Button4" />
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+         <children>
+            <Button id="Button7" fx:id="Button7" layoutX="74.0" layoutY="55.0" mnemonicParsing="false" text="Button7" />
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <children>
+            <Button id="Button6" fx:id="Button6" layoutX="74.0" layoutY="55.0" mnemonicParsing="false" text="Button6" />
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+         <children>
+            <Button id="Button5" fx:id="Button5" layoutX="75.0" layoutY="54.0" mnemonicParsing="false" text="Button5" />
+         </children>
+      </AnchorPane>
+   </children>
+</GridPane>

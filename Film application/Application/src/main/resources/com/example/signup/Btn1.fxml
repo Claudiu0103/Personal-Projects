@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #90D640;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.signup.Btn1">
+   <children>
+      <TableView id="tableView" fx:id="tableView" layoutX="62.0" layoutY="109.0" prefHeight="223.0" prefWidth="475.0">
+        <columns>
+          <TableColumn fx:id="titlu" prefWidth="75.0" text="Titlu" />
+          <TableColumn fx:id="an" prefWidth="60.199981689453125" text="An" />
+            <TableColumn fx:id="durata" prefWidth="71.40000915527344" text="Durata" />
+            <TableColumn fx:id="gen" prefWidth="66.4000244140625" text="Gen" />
+            <TableColumn fx:id="studio" prefWidth="103.199951171875" text="Studio" />
+            <TableColumn fx:id="id_producator" prefWidth="94.39996337890625" text="ID producator" />
+        </columns>
+      </TableView>
+      <Button fx:id="back" layoutX="62.0" layoutY="38.0" mnemonicParsing="false" text="Back" />
+   </children>
+</AnchorPane>

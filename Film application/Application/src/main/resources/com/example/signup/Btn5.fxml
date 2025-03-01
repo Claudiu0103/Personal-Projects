@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #3EBB66;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.signup.Btn5">
+   <children>
+      <Label fx:id="rezultat" layoutX="154.0" layoutY="163.0" prefHeight="62.0" prefWidth="345.0" text="rezultat">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="back" layoutX="76.0" layoutY="67.0" mnemonicParsing="false" text="Back" />
+   </children>
+</AnchorPane>
