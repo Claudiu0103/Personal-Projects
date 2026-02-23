@@ -1,0 +1,222 @@
+version: '3'
+
+services:
+   nginx:
+    image: nginx:latest
+    container_name: nginx
+    volumes:
+      - ./nginx/html:/usr/share/nginx/html:ro
+    networks:
+      - demo_net
+
+   traefik:
+    image: traefik:v3.0
+    container_name: traefik
+    restart: always
+    ports:
+      - "80:80" # The HTTP port
+      # - "443:443" # The HTTPS port
+      - "8080:8080" # Dashboard port
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro" # Traefik can listen to the Docker events
+      - "./traefik.yml:/etc/traefik/traefik.yml:ro" # Static configuration file
+      - "./dynamic:/etc/traefik/dynamic:ro" # Dynamic configuration files
+      - "./logs:/var/log/traefik" # Log files
+    develop: # Enable live reload of dynamic configuration files on Windows, if using Unix based system needs to be commented out
+      watch:
+       - path: ./dynamic                   # watch the whole folder
+         action: restart
+    networks:
+      - demo_net
+
+
+   user-db:
+    image: postgres
+    container_name: user-db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: c1l2a3u4
+      POSTGRES_DB: user-db
+    ports:
+      - "5433:5432"
+    volumes:
+      - user-db:/var/lib/postgresql/data
+    networks:
+      demo_net:
+      
+   device-db:
+    image: postgres
+    container_name: device-db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: c1l2a3u4
+      POSTGRES_DB: device-db
+    ports:
+      - "5434:5432"
+    volumes:
+      - device-db:/var/lib/postgresql/data
+    networks:
+      demo_net:
+      
+   auth-db:
+    image: postgres
+    container_name: auth-db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: c1l2a3u4
+      POSTGRES_DB: auth-db
+    ports:
+      - "5435:5432"
+    volumes:
+      - auth-db:/var/lib/postgresql/data
+    networks:
+      demo_net:  
+
+  #  monitoring-db:
+  #   image: postgres
+  #   container_name: monitoring-db
+  #   restart: always
+  #   environment:
+  #     POSTGRES_USER: postgres
+  #     POSTGRES_PASSWORD: c1l2a3u4
+  #     POSTGRES_DB: monitoring-db
+  #   ports:
+  #     - "5436:5432"
+  #   volumes:
+  #     - monitoring-db:/var/lib/postgresql/data
+  #   networks:
+  #     demo_net:    
+
+   user-microservice:
+    build:
+      context: ./ds2025_30644_gusita_claudiu_usermicroservice
+      dockerfile: ./Dockerfile
+    container_name: user-microservice
+    ports:
+      - "8081:8080"
+    environment:
+      - DB_IP=user-db
+      - DB_PORT=5432
+      - DB_DBNAME=user-db
+      - DB_USER=postgres
+      - DB_PASSWORD=c1l2a3u4
+      - DEVICES_URL=http://device-microservice:8082
+      - AUTH_URL=http://auth-microservice:8081
+    networks:
+      demo_net:
+      
+      
+   auth-microservice:
+    build:
+      context: ./ds2025_30644_gusita_claudiu_authorizationservice
+      dockerfile: ./Dockerfile
+    container_name: auth-microservice
+    ports:
+      - "8082:8081"
+    environment:
+      - DB_IP=auth-db
+      - DB_PORT=5432
+      - DB_DBNAME=auth-db
+      - DB_USER=postgres
+      - DB_PASSWORD=c1l2a3u4
+      - SECRET_KEY=jwt.secret=MySuperSecureJwtSecretKeyThatIsAtLeast32Chars
+      - USERS_URL=http://user-microservice:8080
+
+    networks:
+      demo_net:    
+    
+    
+   device-microservice:
+    build:
+      context: ./ds2025_30644_gusita_claudiu_devicemicroservice
+      dockerfile: ./Dockerfile
+    container_name: device-microservice
+    ports:
+      - "8083:8082"
+    environment:
+      - DB_IP=device-db
+      - DB_PORT=5432
+      - DB_DBNAME=device-db
+      - DB_USER=postgres
+      - DB_PASSWORD=c1l2a3u4
+      - USERS_URL=http://user-microservice:8080
+    networks:
+      demo_net:
+
+  #  monitoring-microservice:
+  #   build:
+  #     context: ./ds2025_30644_gusita_claudiu_monitoringmicroservice
+  #     dockerfile: ./Dockerfile
+  #   container_name: monitoring-microservice
+  #   ports:
+  #     - "8084:8084"
+  #   volumes:
+  #     - ~/.m2:/root/.m2
+  #   environment:
+  #     - DB_IP=monitoring-db
+  #     - DB_PORT=5432
+  #     - DB_DBNAME=monitoring-db
+  #     - DB_USER=postgres
+  #     - DB_PASSWORD=c1l2a3u4
+  #   networks:
+  #     demo_net:    
+   websocket-microservice:
+    build:
+      context: ./ds2025_30644_gusita_claudiu_websocketmicroservice
+      dockerfile: ./Dockerfile
+    container_name: websocket-microservice
+    ports:
+      - "8085:8085"
+    volumes:
+      - ~/.m2:/root/.m2
+    networks:
+      demo_net: 
+   customer-microservice:
+    build:
+      context: ./ds2025_30644_gusita_claudiu_customersupportmicroservice
+      dockerfile: ./Dockerfile
+    container_name: customer-microservice
+    ports:
+      - "8086:8086"
+    volumes:
+      - ~/.m2:/root/.m2
+    networks:
+      demo_net:
+      
+  #  loadbalancing-microservice:
+  #   build:
+  #     context: ./ds2025_30644_gusita_claudiu_loadbalancingmicroservice
+  #     dockerfile: ./Dockerfile
+  #   container_name: loadbalancing-microservice
+  #   ports:
+  #     - "8087:8087"
+  #   volumes:
+  #     - ~/.m2:/root/.m2
+  #   networks:
+  #     demo_net:   
+   frontend:
+    build:
+      context: ./ds2025_30644_gusita_claudiu_frontend/frontend
+      dockerfile: ./Dockerfile
+    container_name: frontend
+    ports:
+      - "4200:8080"
+    networks:
+      - demo_net
+    depends_on:
+      - user-microservice
+      - auth-microservice
+      - device-microservice
+      
+volumes:
+  user-db:
+  device-db:
+  auth-db:
+  # monitoring-db:
+
+networks:
+  demo_net:
+    external: true

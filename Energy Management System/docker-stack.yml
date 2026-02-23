@@ -1,0 +1,48 @@
+version: "3.9"
+
+services:
+  loadbalancer:
+    image: loadbalancing-microservice:latest
+    deploy:
+      replicas: 1
+    networks:
+      - demo_overlay
+    environment:
+      - MONITORING_REPLICAS=1,2,3
+
+  monitoring:
+    image: monitoring-microservice:latest
+    deploy:
+      replicas: 3
+    networks:
+      - demo_overlay
+    environment:
+      - REPLICA_ID={{.Task.Slot}}
+      - DB_IP=monitoring-db
+      - DB_PORT=5436
+      - DB_DBNAME=monitoring-db
+      - DB_USER=postgres
+      - DB_PASSWORD=c1l2a3u4
+    depends_on:
+      - monitoring-db
+
+  monitoring-db:
+    image: postgres:16
+    command: ["postgres", "-c", "port=5436"]
+    ports:
+      - "5436:5436"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: c1l2a3u4
+      POSTGRES_DB: monitoring-db
+    volumes:
+      - monitoring-db:/var/lib/postgresql/data
+    networks:
+      - demo_overlay
+
+networks:
+  demo_overlay:
+    external: true
+
+volumes:
+  monitoring-db:

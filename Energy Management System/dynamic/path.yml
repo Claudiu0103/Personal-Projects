@@ -1,0 +1,143 @@
+http:
+  # Define URL routing rules, middlewares, and services
+  routers:
+    nginx-frontend:
+      rule: "Host(`localhost`)" # Match requests to localhost without /api prefix
+      entryPoints:
+        - web # Listen on the web (HTTP) entry point
+      service: nginx # Forward to the nginx service
+      
+
+    auth-api-login:
+      rule: "Host(`localhost`) && PathPrefix(`/api/auth/login`)" # Match requests to localhost with /api prefix
+      entryPoints:
+        - web # Listen on the web (HTTP) entry point
+      middlewares:
+        - strip-api-prefix # Remove /api prefix before forwarding
+        - cors
+      service: auth-service
+      priority: 30
+      
+    auth-api-register:
+      rule: "Host(`localhost`) && PathPrefix(`/api/auth/register`)" # Match requests to localhost with /api prefix
+      entryPoints:
+        - web # Listen on the web (HTTP) entry point
+      middlewares:
+        - strip-api-prefix # Remove /api prefix before forwarding
+        - cors
+      service: auth-service
+      priority: 30
+    
+    auth-api-protected:
+      rule: "Host(`localhost`) && PathPrefix(`/api/auth`)" # Match requests to localhost with /api prefix
+      entryPoints:
+        - web # Listen on the web (HTTP) entry point
+      middlewares:
+        - strip-api-prefix # Remove /api prefix before forwarding
+        - jwt
+        - cors
+      service: auth-service
+      priority: 20
+      
+    user-api:
+      rule: "Host(`localhost`) && PathPrefix(`/api/users`)" # Match requests to localhost with /api prefix
+      entryPoints:
+        - web # Listen on the web (HTTP) entry point
+      middlewares:
+        - strip-api-prefix # Remove /api prefix before forwarding
+        - jwt
+        - cors
+      service: user-service
+      priority: 20
+
+    device-api:
+      rule: "Host(`localhost`) && PathPrefix(`/api/devices`)" # Match requests to localhost with /api prefix
+      entryPoints:
+        - web # Listen on the web (HTTP) entry point
+      middlewares:
+        - strip-api-prefix # Remove /api prefix before forwarding
+        - jwt
+        - cors
+      service: device-service
+      priority: 20
+
+    monitoring-api:
+      rule: "Host(`localhost`) && PathPrefix(`/api/consumption`)" # Match requests to localhost with /api prefix
+      entryPoints:
+        - web # Listen on the web (HTTP) entry point
+      middlewares:
+        - strip-api-prefix # Remove /api prefix before forwarding
+        - jwt
+        - cors
+      service: monitoring-service
+      priority: 20
+    customer-api:
+      rule: "Host(`localhost`) && PathPrefix(`/api/chat`)" # Match requests to localhost with /api prefix
+      entryPoints:
+        - web # Listen on the web (HTTP) entry point
+      middlewares:
+        - strip-api-prefix # Remove /api prefix before forwarding
+        - jwt
+        - cors
+      service: customer-service
+      priority: 20
+  middlewares:
+    strip-api-prefix: # Middleware to remove /api prefix
+      stripPrefix: 
+        prefixes:
+          - "/api"
+
+    jwt:
+      forwardAuth:
+        address: "http://auth-microservice:8081/auth/validate"
+        trustForwardHeader: true
+        authResponseHeaders:
+          - X-User-Role
+     
+    cors:
+      headers:
+        accessControlAllowOriginList:
+          - "http://localhost:4200"
+        accessControlAllowMethods:
+          - "GET"
+          - "POST"
+          - "PUT"
+          - "PATCH"
+          - "DELETE"
+          - "OPTIONS"
+        accessControlAllowHeaders:
+          - "Origin"
+          - "Content-Type"
+          - "Authorization"
+        accessControlAllowCredentials: true
+        addVaryHeader: true 
+      
+
+  services:
+    nginx: 
+      loadBalancer:
+        servers:
+          - url: "http://nginx:80" # Container name solved by Docker DNS
+
+    user-service:
+      loadBalancer:
+        servers:
+          - url: "http://user-microservice:8080" # Container name solved by Docker DNS
+          
+    auth-service:
+      loadBalancer:
+        servers:
+          - url: "http://auth-microservice:8081" # Container name solved by Docker DNS
+
+    device-service:
+      loadBalancer:
+        servers:
+          - url: "http://device-microservice:8082" # Container name solved by Docker DN
+    monitoring-service:
+      loadBalancer:
+        servers:
+          - url: "http://monitoring-microservice:8084" # Container name solved by Docker DNS 
+    customer-service:
+      loadBalancer:
+        servers:
+          - url: "http://customer-microservice:8086" # Container name solved by Docker DNS              
