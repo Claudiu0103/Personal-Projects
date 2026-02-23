@@ -2,3 +2,28 @@
 "OpenGL application/objects/Tree1/Tree1.blend" 
 "OpenGL application/objects/Boat/Ferma7.obj" 
 "OpenGL application/objects/Tree1/Tree1.blend" 
+# Unity
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Mm]emoryCaptures/
+
+# Package cache
+**/PackageCache/
+
+# Visual Studio / Rider
+.vs/
+.vscode/
+*.csproj
+*.sln
+*.user
+*.pidb
+*.booproj
+*.svd
+
+# OS
+.DS_Store
+Thumbs.db
