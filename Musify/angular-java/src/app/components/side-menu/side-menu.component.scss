@@ -1,0 +1,83 @@
+.app-container {
+  height: 100%;
+}
+
+.sidebar {
+  width: 250px;
+  min-width: 250px;
+  background-color: rgb(35, 35, 35);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  border-right: 1px solid #333;
+  padding: 0 16px;
+  height: inherit;
+  position: relative;
+}
+
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  background-color: #000000;
+}
+
+mat-nav-list {
+  background-color: #44474e;
+  border-radius: 8px;
+  padding: 8px 0;
+  margin-bottom: 8px;
+}
+
+h3[mat-subheader] {
+  color: #fafafa;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0 16px;
+  margin-bottom: 8px;
+}
+
+
+a[mat-list-item] {
+  color: #ffffff;
+  font-weight: 600;
+  height: 40px;
+  margin: 0 8px;
+  padding: 0 8px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+
+  span {
+    color: #ffffff;
+  }
+
+  .mat-icon {
+    transform: translateY(5px);
+    margin-right: 16px;
+    transition: color 0.2s ease;
+    color: #ffffff;
+  }
+
+  &:hover {
+    background-color: #1f1f1f;
+    color: white;
+
+    span {
+      color: white;
+    }
+
+    .mat-icon {
+      color: white;
+    }
+  }
+}
+
+.mat-list-item-active {
+  background-color: rgb(35, 35, 35);
+}
+
+.sidebar-content{
+  position: fixed;
+  width: inherit;
+}

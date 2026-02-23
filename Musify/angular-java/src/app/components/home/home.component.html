@@ -1,0 +1,35 @@
+<div class="home-page">
+  <div class="entity-section">
+    <h2>Most Wanted Songs</h2>
+    <app-scroll-container>
+      <app-song-card *ngFor="let song of mostWantedSongs" [song]="song"
+        (clicked)="openSongDetails(song)"></app-song-card>
+      <app-song-details-modal *ngIf="selectedSong" [song]="selectedSong" [isAdmin]="isAdmin"
+        (close)="closeSongDetails()">
+      </app-song-details-modal>
+
+    </app-scroll-container>
+  </div>
+
+  <div class="entity-section">
+    <h2>Your Favorite Artists</h2>
+    <app-scroll-container>
+      <app-artist-card *ngFor="let artist of artists" [artist]="artist"></app-artist-card>
+    </app-scroll-container>
+  </div>
+
+  <div class="entity-section">
+    <h2>Hot albums</h2>
+    <app-scroll-container>
+      <app-album-card *ngFor="let album of albums" [album]="album"></app-album-card>
+    </app-scroll-container>
+  </div>
+
+  <div class="entity-section">
+    <h2>Top Playlists</h2>
+    <app-scroll-container>
+      <app-playlist-card *ngFor="let playlist of playlists" [playlist]="playlist"></app-playlist-card>
+    </app-scroll-container>
+  </div>
+
+</div>

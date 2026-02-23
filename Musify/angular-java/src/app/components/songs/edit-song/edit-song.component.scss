@@ -1,0 +1,82 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  background-color: #282828;
+  color: #e0e0e0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+form {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2rem;
+  color: #e0e0e0;
+}
+
+h3 {
+  margin: 30px 0 10px 0;
+  color: #cccccc;
+}
+
+mat-form-field.with-validation {
+  width: 100%;
+  margin-bottom: 15px;
+  background-color: #333333;
+  border-radius: 6px;
+  padding: 10px 10px 5px 10px;
+  display: block;
+}
+
+mat-form-field.no-validation {
+  width: 100%;
+  margin-bottom: 15px;
+  background-color: #333333;
+  border-radius: 6px;
+  padding: 10px 10px 0px 10px;
+  display: block;
+}
+
+.alt-title-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.alt-title-field,
+.alt-lang-field {
+  flex: 1;
+  min-width: 200px;
+}
+
+button[mat-raised-button] {
+  width: 100%;
+  background-color: #4e7462;
+  color: #e0e0e0;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-top: 20px;
+}
+
+button:disabled {
+  background-color: #303135;
+  color: #888888;
+}
+
+mat-error {
+  color: #ff6b6b;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: transparent;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-underline {
+  display: none;
+}

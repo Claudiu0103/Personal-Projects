@@ -1,0 +1,11 @@
+<app-song-list
+ [songs]="songs"
+ (songClicked)="openSongDetails($event)">
+</app-song-list>
+  
+<app-song-details-modal
+  [song]="selectedSong"
+  (close)="closeSongDetails()"
+  [isAdmin]="isAdmin"
+  *ngIf="selectedSong">
+</app-song-details-modal>

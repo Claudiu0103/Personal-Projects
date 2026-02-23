@@ -1,0 +1,49 @@
+.songs-wrapper {
+  padding: 2rem;
+  background: linear-gradient(135deg, #eac766 0%, #b35620 100%);
+  min-height: 100vh;
+
+  h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: white;
+    text-align: left;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.songs-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+  gap: 2rem;
+  padding: 1rem 0;
+  row-gap: 3.5rem;
+}
+
+@media (max-width: 768px) {
+  .songs-wrapper {
+    padding: 1rem;
+
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .songs-container {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+
+  .song-card {
+    padding: 0.75rem;
+
+    .album-art {
+      height: 140px;
+    }
+
+    h3 {
+      font-size: 1rem;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angular App</title>
+</head>
+
+<body>
+    <app-toast-notification *ngIf="loggedIn"></app-toast-notification>
+    <app-nav-menu class="navMenu" *ngIf="loggedIn"></app-nav-menu>
+    <div [ngClass]="loggedIn ?  'mainContent' : 'mainContent logged-out'">
+        <app-side-menu class="sideMenu" *ngIf="loggedIn"></app-side-menu>
+        <div class="app-container" [ngClass]="loggedIn ? 'app-container-logged-in' : ''">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+
+</body>
+
+</html>

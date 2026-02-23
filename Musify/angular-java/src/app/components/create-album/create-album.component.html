@@ -1,0 +1,64 @@
+<h2>Create New Album</h2>
+<form #albumForm="ngForm" (ngSubmit)="createAlbum()" novalidate>
+
+    <mat-form-field appearance="fill" class="with-validation">
+        <mat-label>Title</mat-label>
+        <input matInput name="title" [(ngModel)]="album.title" required #titleInput="ngModel">
+        <mat-error *ngIf="titleInput.invalid && titleInput.touched">
+            Title is required
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="no-validation">
+        <mat-label>Description</mat-label>
+        <textarea matInput name="description" [(ngModel)]="album.description"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="with-validation">
+        <mat-label>Genre</mat-label>
+        <input matInput name="genre" [(ngModel)]="album.genre" required #genreInput="ngModel">
+        <mat-error *ngIf="genreInput.invalid && genreInput.touched">
+            Genre is required
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="with-validation">
+        <mat-label>Release Date</mat-label>
+        <input matInput type="date" name="releaseDate" [(ngModel)]="album.releaseDate" required
+            #releaseDateInput="ngModel">
+        <mat-error *ngIf="releaseDateInput.invalid && releaseDateInput.touched">
+            Release Date is required
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="no-validation">
+        <mat-label>Label</mat-label>
+        <input matInput name="label" [(ngModel)]="album.label">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="with-validation">
+        <mat-label>Select Artist</mat-label>
+        <mat-select [(ngModel)]="album.artistId" name="artistId" required #artistIdModel="ngModel"
+            [ngModelOptions]="{standalone: true}">
+            <mat-option [value]="null" disabled>-</mat-option>
+            <mat-option *ngFor="let artist of allArtists" [value]="artist.id">
+                {{ artist.name }}
+            </mat-option>
+        </mat-select>
+        <mat-error *ngIf="artistIdModel.invalid && artistIdModel.touched">
+            Artist is required.
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="no-validation">
+        <mat-label>Select Songs</mat-label>
+        <mat-select [(ngModel)]="selectedSongIds" name="songs" multiple>
+            <mat-option *ngFor="let song of allSongs" [value]="song.id">
+                {{ song.title }}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit"
+        [disabled]="albumForm.invalid || album.artistId === null">Create Album</button>
+</form>

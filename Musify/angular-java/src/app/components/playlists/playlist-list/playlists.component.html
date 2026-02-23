@@ -1,0 +1,19 @@
+<div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+<div class="playlists-wrapper">
+  <div class="playlist-header">
+    <h2>Playlists</h2>
+    <button mat-raised-button (click)="navigateTo(RoutePaths.createPlaylist)">
+      <mat-icon>add</mat-icon>
+      Create playlist
+    </button>
+  </div>
+
+  <div class="playlist-list">
+    <app-playlist-card *ngFor="let p of playlists" [playlist]="p" [isFollowed]="followedIds.includes(p.id)"
+      [playlistOwnerId]="p.owner.id" [loggedUserId]="currentUserId" (followToggled)="onFollowToggled(p.id, $event)">
+    </app-playlist-card>
+  </div>
+
+  <div *ngIf="isLoadingPlaylists" class="loading">Loading more…</div>
+</div>

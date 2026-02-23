@@ -1,0 +1,44 @@
+<div class="album-container" *ngIf="album">
+  <div class="album-header">
+    <div class="title-bar">
+      <h1 class="album-title text-fitting">{{ album.title }}</h1>
+      <ng-container *ngIf="userRole === 'ADMIN'">
+
+        <button class="updateAlbumButton" mat-raised-button (click)="goToEdit()">Edit</button>
+      </ng-container>
+    </div>
+    <p class="description">{{ album.description }}</p>
+    <p class="info">
+      <span class="album-genre">{{ album.genre }}</span>
+      <span class="album-releaseDate">{{ album.releaseDate | date: 'mediumDate' }}</span>
+      <span class="album-label">{{ album.label }}</span>
+      <span class="album-artist">{{ album.artist.name }}</span>
+    </p>
+  </div>
+
+  <div class="songs-section" *ngIf="songs.length > 0">
+    <h2>Songs</h2>
+    <table class="song-table">
+      <thead>
+        <tr>
+          <th class="table-header-number">#</th>
+          <th class="table-header-title">Title</th>
+          <th class="table-header-artist">Artists</th>
+          <th class="table-header-duration">Duration</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let song of songs; let i = index">
+          <td class="songs-number">{{ i + 1 }}</td>
+          <td class="songs-title text-fitting">{{ song.title }}</td>
+          <td class="songs-artist text-fitting">{{ getArtistNames(song.artists) }}</td>
+          <td class="song-duration">{{ song.duration }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="no-songs-message" *ngIf="songs.length === 0">
+    <p class="error-message">No available songs yet.</p>
+  </div>
+</div>

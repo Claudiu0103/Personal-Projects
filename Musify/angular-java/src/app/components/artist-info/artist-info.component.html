@@ -1,0 +1,75 @@
+<div class="artist-page">
+  <div class="artist-detail-container">
+    <div class="artist-header">
+      <div class="artist-picture" [ngClass]="artist?.type?.toLowerCase()">
+        <mat-icon mat-list-icon>mic</mat-icon>
+      </div>
+
+      <div class="artist-main-info">
+        <h1 class="artist-name">{{ artist?.getName() }}</h1>
+        <div class="artist-meta">
+          {{ artist?.type }} | {{ getStartDate() }} - {{ getEndDate() }}
+        </div>
+      </div>
+      <button mat-raised-button *ngIf="isAdmin" (click)="goToEdit()">Edit</button>
+    </div>
+
+    <div class="dropdown-section" *ngIf="artist?.type === artistType.PERSON">
+      <div class="dropdown-header" (click)="togglePersonInfo()">
+        <h2>Person Details</h2>
+        <span class="dropdown-icon">{{ showPersonInfo ? '&#9660;' : '&#9658;' }}</span>
+      </div>
+      <div class="info-content" [ngClass]="{ 'show': showPersonInfo, 'hide': !showPersonInfo }">
+        <p><strong>First Name:</strong> {{ artist?.person?.firstName }}</p>
+        <p><strong>Last Name:</strong> {{ artist?.person?.lastName }}</p>
+        <p><strong>Birthday:</strong> {{ getBirthday(artist?.person) }}</p>
+      </div>
+    </div>
+
+    <div class="dropdown-section" *ngIf="artist?.type === artistType.BAND">
+      <div class="dropdown-header" (click)="toggleBandInfo()">
+        <h2>Band Details</h2>
+        <span class="dropdown-icon">{{ showBandInfo ? '&#9660;' : '&#9658;' }}</span>
+      </div>
+
+      <div class="info-content" [ngClass]="{ 'show': showBandInfo, 'hide': !showBandInfo }">
+        <p><strong>Location:</strong> {{ artist?.band?.location }}</p>
+        <h3>Members:</h3>
+        <div *ngFor="let member of artist?.band?.members" class="member-card">
+          <p><strong>Stage Name:</strong> {{ member?.stageName }}</p>
+          <p><strong>First Name:</strong> {{ member?.firstName }}</p>
+          <p><strong>Last Name:</strong> {{ member?.lastName }}</p>
+          <p><strong>Birthday:</strong> {{ getBirthday(member) }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="album-list" *ngIf="artistAlbums.length > 0">
+    <h2>Albums</h2>
+    <app-scroll-container>
+      <app-album-card *ngFor="let album of artistAlbums" [album]="album"></app-album-card>
+    </app-scroll-container>
+  </div>
+
+  <div class="songs-section" *ngIf="artistSongs.length > 0">
+    <h2>Songs</h2>
+    <table class="song-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Title</th>
+          <th>Artists</th>
+          <th>Duration</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let song of artistSongs; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td class="text-fitting">{{ song.title }}</td>
+          <td class="text-fitting">{{ getArtistNames(song.artists) }}</td>
+          <td>{{ song.duration }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

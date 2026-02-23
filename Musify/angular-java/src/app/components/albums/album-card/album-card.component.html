@@ -1,0 +1,9 @@
+<div class="album-card" (click)="onCardClick()">
+    <div class="album-art">
+        <mat-icon mat-list-icon>album</mat-icon>
+    </div>
+    <h3 class="text-fitting">{{ album.title }}</h3>
+    <p class="genre">{{ album.genre }}</p>
+    <p class="artist text-fitting">{{ album.artist.name }}</p>
+    <p class="release-date">{{ album.releaseDate }}</p>
+</div>

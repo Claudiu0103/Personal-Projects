@@ -1,0 +1,81 @@
+:host {
+  display: block;
+  background-color: transparent; // Prevent double background
+}
+
+.dialog-content {
+  background-color: #293f34;
+  color: #e0e0e0;
+  padding: 2rem;
+  border-radius: 12px;
+}
+
+.h2-dialog-title {
+  font-size: 1.75rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+  color: #e0e0e0;
+}
+
+mat-form-field {
+  background-color: #333;
+  border-radius: 6px;
+  padding: 10px;
+  margin-bottom: 1.5rem;
+  width: 90%;
+
+  .mat-select-placeholder,
+  .mat-select-value,
+  .mat-option-text {
+    color: #e0e0e0;
+  }
+
+  .mat-form-field-label {
+    color: #bbb;
+  }
+
+  .mat-form-field-appearance-fill .mat-form-field-flex {
+    background-color: transparent;
+  }
+
+  .mat-form-field-appearance-fill .mat-form-field-underline {
+    display: none;
+  }
+}
+
+.mat-select-panel {
+  background-color: #2a2a2a;
+  color: #e0e0e0;
+}
+
+[mat-dialog-actions] {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
+
+  button[mat-button] {
+    background-color: #4e7462;
+    color: #e0e0e0;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.5rem 1.2rem;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: #5d8a74;
+    }
+
+    &:last-child {
+      background-color: transparent;
+      color: #aaa;
+
+      &:hover {
+        background-color: #42473e;
+        color: #fff;
+      }
+    }
+  }
+}

@@ -1,0 +1,55 @@
+<h2>Update album</h2>
+<form #albumForm="ngForm" (ngSubmit)="updateAlbum(albumForm)">
+
+    <mat-form-field appearance="fill" class="with-validation">
+        <mat-label>Title</mat-label>
+        <input matInput name="title" [(ngModel)]="title" required #titleInput="ngModel">
+        <mat-error *ngIf="titleInput.invalid && titleInput.touched">
+            Title is required
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="no-validation">
+        <mat-label>Description</mat-label>
+        <textarea matInput name="description" [(ngModel)]="album.description"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="with-validation">
+        <mat-label>Genre</mat-label>
+        <input matInput name="genre" [(ngModel)]="album.genre" required #genreInput="ngModel">
+        <mat-error *ngIf="genreInput.invalid && genreInput.touched">
+            Genre is required
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="with-validation">
+        
+    <mat-label>Release Date</mat-label>
+    <input
+        matInput
+        type="date"
+        name="releaseDate"
+        [(ngModel)]="album.releaseDate"
+        required
+        pattern="^\d{4}-\d{2}-\d{2}$"
+        #releaseDateInput="ngModel"
+    />
+
+    <mat-error *ngIf="releaseDateInput.invalid && releaseDateInput.touched">
+        <ng-container *ngIf="releaseDateInput.errors?.['required']">
+        Release Date is required
+        </ng-container>
+        <ng-container *ngIf="!releaseDateInput.errors?.['required'] && releaseDateInput.errors?.['pattern']">
+        Release Date must have a 4-digit year
+        </ng-container>
+    </mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field appearance="fill" class="no-validation">
+        <mat-label>Label</mat-label>
+        <input matInput name="label" [(ngModel)]="album.label">
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="albumForm.invalid">Save</button>
+</form>

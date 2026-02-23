@@ -1,0 +1,7 @@
+<div class="scroll-container-wrapper" #scrollWrapper>
+    <button class="scroll-button left" *ngIf="scrollable" (click)="scrollLeft()">←</button>
+    <button class="scroll-button right" *ngIf="scrollable" (click)="scrollRight()">→</button>
+    <div class="song-cards-scroll" #scrollContainer>
+        <ng-content></ng-content>
+    </div>
+</div>

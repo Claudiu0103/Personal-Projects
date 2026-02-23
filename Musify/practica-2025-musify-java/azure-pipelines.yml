@@ -1,0 +1,79 @@
+trigger:
+  - main
+
+pool:
+  name: 'ARBSDEVOPSBUILD01_Shared'
+
+variables:
+  buildDir: '$(System.DefaultWorkingDirectory)/build-output'
+
+stages:
+  - stage: Build
+    jobs:
+      - job: Build
+        steps:
+          - script: |
+              echo "📦 Descarc JDK 24 (x64)..."
+              mkdir -p /tmp/jdk
+              curl -L -o /tmp/jdk/jdk.tar.gz https://download.oracle.com/java/24/latest/jdk-24_linux-x64_bin.tar.gz
+              tar -xzf /tmp/jdk/jdk.tar.gz -C /tmp/jdk
+              export JAVA_HOME=$(find /tmp/jdk -maxdepth 1 -type d -name "jdk-24*")
+              echo "JAVA_HOME=$JAVA_HOME"
+              echo "##vso[task.setvariable variable=JAVA_HOME]$JAVA_HOME"
+              echo "##vso[task.prependpath]$JAVA_HOME/bin"
+              java -version
+            displayName: "✅ Instalare JDK 24 x64"
+            
+          - task: Maven@3
+            inputs:
+              mavenPomFile: 'pom.xml'
+              goals: 'clean package'
+              publishJUnitResults: true
+            env:
+              MAVEN_OPTS:  "-Xmx2g -Xms512m --add-modules jdk.localedata"
+            displayName: "✅ Instalare Maven"
+
+          - script: |
+              echo "📦 Instalez PostgreSQL Client..."
+              sudo apt-get install -y postgresql-client
+              psql --version
+            displayName: "✅ Instalare Postgres Client"
+
+          - script: |
+              mkdir -p $(buildDir)
+              cp -r target/*.jar $(buildDir)
+            displayName: 'Copiere artefacte .jar'
+
+          - task: ArchiveFiles@2
+            inputs:
+              rootFolderOrFile: '$(buildDir)'
+              includeRootFolder: false
+              archiveType: 'zip'
+              archiveFile: '$(Build.ArtifactStagingDirectory)/java-app.zip'
+              replaceExistingArchive: true
+
+          - task: PublishBuildArtifacts@1
+            inputs:
+              PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+              ArtifactName: 'java-zip-artifact'
+              publishLocation: 'Container'
+            displayName: "Publicare artefacte build"
+  - stage: Test
+    displayName: "Test Stage"
+    jobs:
+      - job: RunTests
+        steps:
+          - script: |
+              echo "JAVA_HOME: $JAVA_HOME"
+              java -version
+              mvn -version
+              mvn clean test
+            displayName: "Run Unit Tests"
+
+          - task: PublishTestResults@2
+            inputs:
+              testResultsFiles: '**/surefire-reports/TEST-*.xml'
+              testRunTitle: 'JUnit Test Results'
+              failTaskOnFailedTests: true
+            condition: succeededOrFailed()
+            displayName: "Publish JUnit Test Results"

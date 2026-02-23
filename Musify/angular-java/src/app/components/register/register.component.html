@@ -1,0 +1,67 @@
+<div class="register-container">
+  <form (ngSubmit)="onSubmit(registerForm)" #registerForm="ngForm">
+    <h2>Create Account</h2>
+
+    <label for="firstName">First Name*</label>
+    <input type="text" id="firstName" name="firstName" [(ngModel)]="firstName" required #firstNameRef="ngModel" />
+    <div *ngIf="firstNameRef.invalid && firstNameRef.touched" class="error">
+      First name is required.
+    </div>
+
+    <label for="lastName">Last Name*</label>
+    <input type="text" id="lastName" name="lastName" [(ngModel)]="lastName" required #lastNameRef="ngModel" />
+    <div *ngIf="lastNameRef.invalid && lastNameRef.touched" class="error">
+      Last name is required.
+    </div>
+
+    <label for="email">Email*</label>
+    <input type="email" id="email" name="email" [(ngModel)]="email" required pattern="^[^@]+@[^@]+\.[^@]+$"
+      #emailRef="ngModel" />
+    <div *ngIf="emailRef.invalid && emailRef.touched" class="error">
+      Please enter a valid email.
+    </div>
+
+    <label for="country">Country*</label>
+    <input type="text" id="country" name="country" [(ngModel)]="country" required #countryRef="ngModel" />
+    <div *ngIf="countryRef.invalid && countryRef.touched" class="error">
+      Country is required.
+    </div>
+
+    <label for="password">Password*</label>
+    <input type="password" id="password" name="password" [(ngModel)]="password" required minlength="8"
+      pattern="^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=!.])(?=\S+$).{8,}$" #passwordRef="ngModel" />
+    <div *ngIf="passwordRef.invalid && passwordRef.touched">
+      <div *ngIf="passwordRef.hasError('required')" class="error">
+        Password is required.
+      </div>
+      <div *ngIf="passwordRef.hasError('minlength')" class="error">
+        Password must be at least 8 characters long.
+      </div>
+      <div *ngIf="passwordRef.hasError('pattern')" class="error">
+        Password must contain at least one uppercase letter, one number, and one special character (&#64;#$%^&+=!.).
+      </div>
+    </div>
+
+    <label for="confirmPassword">Confirm Password*</label>
+    <input type="password" id="confirmPassword" name="confirmPassword" [(ngModel)]="confirmPassword" required
+      #confirmPasswordRef="ngModel" />
+    <div *ngIf="confirmPasswordRef.touched && confirmPassword !== password" class="error">
+      Passwords do not match.
+    </div>
+    <div *ngIf="confirmPasswordRef.invalid && confirmPasswordRef.touched" class="error">
+      Confirm Password is required.
+    </div>
+
+
+    <button type="submit" [disabled]="registerForm.invalid">
+      Register
+    </button>
+    <div *ngIf="serverErrorMessage" class="errorFromBackend">
+      {{ serverErrorMessage }}
+    </div>
+
+    <button type="button" class="link" (click)="goToLogin()">
+      Already have an account?
+    </button>
+  </form>
+</div>

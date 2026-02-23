@@ -1,0 +1,18 @@
+<div class="playlist-card" (click)="goToDetail()">
+  <div class="playlist-art">
+    <mat-icon mat-list-icon>queue_music</mat-icon>
+  </div>
+  <h3 class="text-fitting">{{ playlist.name }}</h3>
+  <p class="type">{{ playlist.type }}</p>
+  <p class="duration">Duration: {{ (playlist.duration) }}</p>
+
+  <p class="owner">
+    by {{ playlist.owner.firstName }} {{ playlist.owner.lastName }}
+  </p>
+  <button [style.visibility]="playlistOwnerId !== loggedUserId ? 'visible' : 'hidden'" mat-stroked-button
+    color="primary" class="follow-btn" (click)="onToggleFollow($event)"
+    matTooltip="{{ isFollowed ? 'Unfollow this playlist' : 'Follow this playlist' }}">
+    <mat-icon>{{ isFollowed ? 'favorite' : 'favorite_border' }}</mat-icon>
+    {{ isFollowed ? 'Unfollow' : 'Follow' }}
+  </button>
+</div>

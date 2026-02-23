@@ -1,0 +1,45 @@
+<div class="modal-backdrop" (click)="onClose()"></div>
+<div class="modal-content">
+    <button class="close-btn" (click)="onClose()">✕</button>
+    <div class="album-art">
+        <mat-icon mat-list-icon>music_note</mat-icon>
+    </div>
+    <h2 class="text-fitting">{{ song.title }}</h2>
+    <p><strong>Duration:</strong> {{ song.duration }}</p>
+    <p *ngIf="song.album" class="text-fitting"><strong>Album:</strong> {{ song.album.title }}</p>
+    <p *ngIf="!song.album"><strong>Album:</strong> - </p>
+    <p class="text-fitting"><strong>Artists:</strong> {{ song.getArtistNames() }}</p>
+
+    <div *ngIf="song.alternativeTitles.length">
+        <h4>Alternative Titles:</h4>
+        <ul>
+            <li *ngFor="let alt of song.alternativeTitles" class="text-fitting">
+                "{{ alt.title }}" <span *ngIf="alt.language">({{ alt.language }})</span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="actions">
+        <button *ngIf="isAdmin" mat-stroked-button color="primary" (click)="onEdit()">
+            Edit
+        </button>
+
+        <button *ngIf="showAddButton" mat-stroked-button color="accent" (click)="openAddToPlaylistDialog()">
+            Add to Playlist
+        </button>
+
+        <button *ngIf="playlistId && playlistOwnerId === loggedUserId" mat-stroked-button class="remove-button"
+            (click)="removeFromPlaylist()">
+            Remove from Playlist
+        </button>
+
+        <button *ngIf="song.title == 'Teroristi cu acte'"
+            mat-stroked-button color="primary"
+            (click)="playButton()">
+            {{ isPlaying ? '⏸' : '▶' }}
+        </button>
+    </div>
+    
+  </div>
+
+

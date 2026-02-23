@@ -1,0 +1,10 @@
+<div class="profile-container" (clickOutside)="closeDropdown()">
+  <button mat-icon-button aria-label="User Profile" (click)="toggleDropdown()">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+
+  <div *ngIf="isOpen" class="dropdown-menu">
+    <button mat-button (click)="openProfileModal()">Profile</button>
+    <button mat-button (click)="logOut()">Logout</button>
+  </div>
+</div>

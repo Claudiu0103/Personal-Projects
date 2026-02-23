@@ -1,0 +1,96 @@
+<h2>Update Artist</h2>
+<form #editForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+  <div *ngIf="artist.person" class="person-section">
+    <h3>Update Person Details</h3>
+
+    <mat-form-field appearance="fill" class="with-validation">
+      <mat-label>First Name</mat-label>
+      <input matInput [(ngModel)]="artist.person.firstName" name="firstName" required #firstNameInput="ngModel">
+      <mat-error *ngIf="firstNameInput.invalid && firstNameInput.touched">
+        First Name is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="with-validation">
+      <mat-label>Last Name</mat-label>
+      <input matInput [(ngModel)]="artist.person.lastName" name="lastName" required #lastNameInput="ngModel">
+      <mat-error *ngIf="lastNameInput.invalid && lastNameInput.touched">
+        Last Name is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="with-validation">
+      <mat-label>Stage Name</mat-label>
+      <input matInput [(ngModel)]="artist.person.stageName" name="stageName" required #stageNameInput="ngModel">
+      <mat-error *ngIf="stageNameInput.invalid && stageNameInput.touched">
+        Stage Name is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="with-validation">
+      <mat-label>Birth Date</mat-label>
+      <input matInput type="date" [(ngModel)]="artist.person.birthday" name="birthday" required
+        #birthdayInput="ngModel">
+      <mat-error *ngIf="birthdayInput.invalid && birthdayInput.touched">
+        Birth Date is required
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div *ngIf="artist.band" class="band-section">
+    <h3>Update Band Details</h3>
+
+    <mat-form-field appearance="fill" class="with-validation">
+      <mat-label>Band Name</mat-label>
+      <input matInput [(ngModel)]="artist.band.bandName" name="bandName" required #bandNameInput="ngModel">
+      <mat-error *ngIf="bandNameInput.invalid && bandNameInput.touched">
+        Band Name is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="with-validation">
+      <mat-label>Location</mat-label>
+      <input matInput [(ngModel)]="artist.band.location" name="location" required #locationInput="ngModel">
+      <mat-error *ngIf="locationInput.invalid && locationInput.touched">
+        Location is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="no-validation">
+      <mat-label>Members</mat-label>
+      <mat-select [(ngModel)]="selectedPersonsIds" name="members" multiple>
+        <mat-option *ngFor="let person of existingPersons" [value]="person.id">
+          {{ person.firstName }} {{ person.lastName }} ({{ person.stageName }})
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div>
+
+    <h3>End Date</h3>
+    <div class="date-row" *ngIf="artist.endDate">
+      <mat-form-field appearance="fill" class="date-field no-validation">
+        <mat-label>Year</mat-label>
+        <input matInput type="number" min="0" max="2100" [(ngModel)]="artist.endDate.year" name="endYear">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="date-field no-validation">
+        <mat-label>Month</mat-label>
+        <input matInput type="number" min="1" max="12" [(ngModel)]="artist.endDate.month" name="endMonth">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="date-field no-validation">
+        <mat-label>Day</mat-label>
+        <input matInput type="number" min="1" max="31" [(ngModel)]="artist.endDate.day" name="endDay">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="editForm.invalid">Save</button>
+
+</form>
+
+<ng-template #forbidden>
+  <p class="forbidden-msg">You do not have permission to edit this artist.</p>
+</ng-template>

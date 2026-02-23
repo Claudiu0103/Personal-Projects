@@ -1,0 +1,102 @@
+.login-container {
+  max-width: 320px;
+  width: 100%;
+  margin: 100px auto;
+  padding: 2rem;
+  border-radius: 8px;
+  background-color: #282828;
+  color: #e0e0e0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  label {
+    align-self: flex-start;
+    margin-bottom: 0.25rem;
+    font-size: 0.9rem;
+  }
+
+  input {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    margin-bottom: 1.25rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #000;
+    box-sizing: border-box;
+    transition: border-color 0.2s, background-color 0.2s;
+
+    &:focus {
+      outline: none;
+      border-color: #007bff;
+      background-color: #eef6ff;
+    }
+  }
+
+  .error {
+    align-self: flex-start;
+    color: #dc3545;
+    font-size: 0.85rem;
+    margin-top: -1rem;
+    margin-bottom: 1rem;
+  }
+
+  .errorFromBackend {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: red;
+    text-align: center;
+  }
+
+  button[mat-raised-button] {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    font-weight: 600;
+    background-color: #4e7462;
+    color: #e0e0e0;
+    border: none;
+    border-radius: 4px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover:not(:disabled) {
+      background-color: #5d8a74;
+    }
+
+    &:disabled {
+      background-color: #303135;
+      color: #888888;
+      cursor: not-allowed;
+    }
+  }
+
+  .link {
+    background: none;
+    border: none;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #007bff;
+    text-decoration: underline;
+    cursor: pointer;
+
+    &:hover {
+      color: #0056b3;
+    }
+  }
+}

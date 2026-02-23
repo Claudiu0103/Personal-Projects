@@ -1,0 +1,50 @@
+<h2>Update Song</h2>
+<form #editForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+
+  <mat-form-field appearance="fill" class="with-validation">
+    <mat-label>Title</mat-label>
+    <input matInput name="title" [(ngModel)]="song.title" required #titleInput="ngModel">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="with-validation">
+    <mat-label>Duration</mat-label>
+    <input matInput name="duration" [(ngModel)]="song.duration" pattern="^[0-5]?[0-9]:[0-5][0-9]$" required
+      #durationInput="ngModel">
+    <mat-error *ngIf="durationInput.invalid && durationInput.touched">
+      Must be in MM:SS format
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="no-validation">
+    <mat-label>Select Artists</mat-label>
+    <mat-select [(ngModel)]="selectedArtistIds" name="artists" multiple>
+      <mat-option *ngFor="let artist of allArtists" [value]="artist.id">
+        {{ artist.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div>
+    <h3>Add Alternative Titles</h3>
+    <div *ngFor="let alt of newAltTitles; let i = index" class="alt-title-row">
+      <mat-form-field appearance="fill" class="alt-title-field no-validation">
+        <mat-label>Alternative Title {{ i + 1 }}</mat-label>
+        <input matInput [name]="'altTitle_' + i" [(ngModel)]="alt.title">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="alt-lang-field no-validation">
+        <mat-label>Language (optional)</mat-label>
+        <input matInput [name]="'altLang_' + i" [(ngModel)]="alt.language">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="editForm.invalid">
+    Save
+  </button>
+
+</form>
+
+<ng-template #forbidden>
+  <p class="forbidden-msg">You do not have permission to edit this song.</p>
+</ng-template>

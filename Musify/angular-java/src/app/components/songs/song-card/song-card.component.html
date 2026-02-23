@@ -1,0 +1,9 @@
+<div class="song-card" (click)="onClick()">
+    <div class="album-art">
+        <mat-icon mat-list-icon>music_note</mat-icon>
+    </div>
+    <h3 class="text-fitting">{{ song.title }}</h3>
+    <p>{{ song.duration }}</p>
+    <p class="album text-fitting">{{ song.getAlbumTitle() }}</p>
+    <p class="artists text-fitting">{{ song.getArtistNames() }}</p>
+</div>

@@ -1,0 +1,42 @@
+<div class="followed-playlists-page">
+  <div *ngIf="viewModel$ | async as playlists">
+    <div class="playlist-header">
+      <button class="owned-playlist-create" name="=create-playlist-button" mat-raised-button (click)="navigateTo(RoutePaths.createPlaylist)">
+        <mat-icon>add</mat-icon>
+        Create Playlist
+      </button>
+    </div>
+
+    <section class="playlist-section" *ngIf="playlists.followed.length > 0; else noFollowedPlaylists" name="followed-playlists-section">
+      <h2>Followed Playlists</h2>
+      <div class="playlist-card-list">
+        <app-playlist-card *ngFor="let p of playlists.followed" [playlist]="p" [isFollowed]="true"
+          [playlistOwnerId]="p.owner.id" [loggedUserId]="currentUserId"
+          (followToggled)="onFollowToggled(p.id, $event)" [attr.name]="'playlist-card-' + p.id"></app-playlist-card>
+      </div>
+    </section>
+
+    <section class="playlist-section" *ngIf="playlists.owned.length > 0; else noOwnedPlaylists" name="owned-playlists-section">
+      <h2>My Playlists</h2>
+      <div class="playlist-card-list">
+        <app-playlist-card *ngFor="let p of playlists.owned" [playlist]="p" [isFollowed]="false"
+          [playlistOwnerId]="p.owner.id" [loggedUserId]="currentUserId"
+          (followToggled)="onFollowToggled(p.id, $event)" [attr.name]="'playlist-card-' + p.id"></app-playlist-card>
+      </div>
+    </section>
+
+    <ng-template #noFollowedPlaylists>
+      <div class="no-content-message" name="no-followed-message">
+        <h3>You haven't followed any playlist yet.</h3>
+        <p>Discover and follow playlists to see them here.</p>
+      </div>
+    </ng-template>
+
+    <ng-template #noOwnedPlaylists>
+      <div class="no-content-message" name="no-owned-message">
+        <h3>You don't own any playlists yet.</h3>
+        <p>Create a playlist!</p>
+      </div>
+    </ng-template>
+  </div>
+</div>

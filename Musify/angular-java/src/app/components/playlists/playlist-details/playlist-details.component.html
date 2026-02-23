@@ -1,0 +1,18 @@
+<div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+
+<div class="songs-in-playlist-wrapper">
+  <div class="header-container">
+    <h2 class="playlist-name">Songs in playlist {{ playlist.name }}</h2>
+    <button class="delete-button" mat-raised-button *ngIf="loggedUserId === playlist.owner.id" (click)="onDeletePlaylist()">Delete
+      playlist</button>
+  </div>
+
+  <div class="song-grid">
+    <app-song-card *ngFor="let song of songs" [song]="song" (click)="onSongClick(song)">
+    </app-song-card>
+  </div>
+  <app-song-details-modal *ngIf="selectedSong" [song]="selectedSong" [isAdmin]="isAdmin" [playlistId]="playlistId"
+    [playlistOwnerId]="playlist.owner.id" [loggedUserId]="loggedUserId ?? undefined" (close)="closeSongDetails()"
+    (songRemoved)="onSongRemoved()">
+  </app-song-details-modal>
+</div>

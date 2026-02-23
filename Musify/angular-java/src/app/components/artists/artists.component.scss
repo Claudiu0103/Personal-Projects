@@ -1,0 +1,50 @@
+.artists-page {
+  padding: 2rem;
+  background: linear-gradient(135deg, #6ca7e9 0%, #654ba2 100%);
+  min-height: 100vh;
+
+  h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: white;
+    text-align: left;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.artist-card-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+  gap: 2rem;
+  padding: 1rem 0;
+  row-gap: 3.5rem;
+    
+}
+
+@media (max-width: 768px) {
+  .artists-page {
+    padding: 1rem;
+
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .artist-card-list {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+
+  .artist-card {
+    padding: 0.75rem;
+
+    .artist-picture {
+      height: 140px;
+    }
+
+    h3 {
+      font-size: 1rem;
+    }
+  }
+}

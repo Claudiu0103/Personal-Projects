@@ -1,0 +1,25 @@
+<h2>Create New Playlist</h2>
+<form #playlistForm="ngForm" (ngSubmit)="createPlaylist(playlistForm)">
+
+  <mat-form-field appearance="fill" class="with-validation">
+    <mat-label>Name</mat-label>
+    <input matInput name="name" [(ngModel)]="playlist.name" required #nameInput="ngModel" />
+    <mat-error *ngIf="nameInput.invalid && nameInput.touched">
+      Name is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="no-validation">
+    <mat-label>Type</mat-label>
+    <mat-select name="type" [(ngModel)]="playlist.type">
+      <mat-option *ngFor="let type of playlistTypes" [value]="type">
+        {{ type }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit"
+    [disabled]="playlistForm.invalid || submitting || loadingUser">
+    Create Playlist
+  </button>
+</form>

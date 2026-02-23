@@ -1,0 +1,75 @@
+<mat-dialog-content class="profile-content">
+  <h2 class="profile-title">User Profile</h2>
+  <div class="profile-icon">
+    <mat-icon>account_circle</mat-icon>
+  </div>
+
+  <div *ngIf="!editProfileMode && !showPasswordFields && user" class="profile-info">
+    <p class="profile-name">First Name: {{user.firstName}}</p>
+    <p class="profile-name">Last Name: {{user.lastName}}</p>
+    <p class="profile-name">Email: {{user.email}}</p>
+    <p class="profile-name">Country: {{user.country}}</p>
+    <p class="profile-role">Role: {{user.role}}</p>
+  </div>
+
+  <div *ngIf="editProfileMode" class="edit-fields">
+    <div class="profile-wrapper">
+      <label for="editFirstName" class="label-profile">First Name</label>
+      <input id="editFirstName" type="text" [(ngModel)]="editProfile.firstName" required class="profile-input"
+        placeholder="Enter first name" />
+    </div>
+
+    <div class="profile-wrapper">
+      <label for="editLastName" class="label-profile">Last Name</label>
+      <input id="editLastName" type="text" [(ngModel)]="editProfile.lastName" required class="profile-input"
+        placeholder="Enter last name" />
+    </div>
+
+    <div class="profile-wrapper">
+      <label for="editCountry" class="label-profile">Country</label>
+      <input id="editCountry" type="text" [(ngModel)]="editProfile.country" required class="profile-input"
+        placeholder="Enter country" />
+    </div>
+
+    <div class="profile-actions">
+      <button mat-raised-button color="primary" (click)="submitProfileUpdate()">Save</button>
+      <button mat-stroked-button (click)="toggleEditProfile()">Cancel</button>
+    </div>
+    <p *ngIf="errorMessage" class="info-message error-message">⚠ {{errorMessage}}</p>
+    <p *ngIf="successMessage" class="info-message success-message">☑ {{successMessage}}</p>
+  </div>
+
+  <div *ngIf="!editProfileMode" class="profile-actions">
+    <button *ngIf="!showPasswordFields" mat-raised-button color="primary" (click)="togglePasswordChange()">Change
+      password</button>
+    <button *ngIf="!showPasswordFields" mat-raised-button color="primary" (click)="toggleEditProfile()">Edit
+      Profile</button>
+  </div>
+
+  <div *ngIf="showPasswordFields" class="password-fields">
+    <div class="password-wrapper">
+      <label for="currentPassword" class="label-password">Current Password</label>
+      <input id="currentPassword" type="password" [(ngModel)]="currentPassword" required class="password-input"
+        placeholder="Enter password" />
+    </div>
+
+    <div class="password-wrapper">
+      <label for="newPassword" class="label-password">New Password</label>
+      <input id="newPassword" type="password" [(ngModel)]="newPassword" required class="password-input"
+        placeholder="Enter password" />
+    </div>
+
+    <div class="password-wrapper">
+      <label for="confirmNewPassword" class="label-password">Confirm New Password</label>
+      <input id="confirmNewPassword" type="password" [(ngModel)]="confirmNewPassword" required class="password-input"
+        placeholder="Enter password" />
+    </div>
+
+    <div class="password-actions">
+      <button mat-raised-button color="primary" (click)="submitPasswordChange()">Save</button>
+      <button mat-stroked-button (click)="togglePasswordChange()">Cancel</button>
+    </div>
+    <p *ngIf="errorMessage" class="info-message error-message">⚠ {{errorMessage}}</p>
+    <p *ngIf="successMessage" class="info-message success-message">☑ {{successMessage}}</p>
+  </div>
+</mat-dialog-content>

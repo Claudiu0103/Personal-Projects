@@ -1,0 +1,48 @@
+<div class="search-page-container">
+
+    <div *ngIf="(searchResults$ | async) as results">
+        <ng-container *ngIf="results.songs.length > 0 || results.artists.length > 0 || results.albums.length > 0; else noResultsFound">
+            <h1 name="results-title">Results for "{{ currentQuery }}"</h1>
+    
+            <section class="results-section">
+                <!--Songs section-->
+                <div *ngIf="results.songs.length > 0" name="songs-section">
+                    <h2>Songs</h2>
+                    <app-scroll-container>
+                        <app-song-card *ngFor="let song of results.songs" 
+                        [song]="song" (clicked)="openSongDetails(song)" [attr.name]="'song-card-' + song.id"></app-song-card>
+                    </app-scroll-container>
+                </div>
+    
+                <!--Artists section-->
+                <div *ngIf="results.artists.length > 0" name="artists-section">
+                    <h2>Artists</h2>
+                    <app-scroll-container>
+                        <app-artist-card *ngFor="let artist of results.artists" 
+                        [artist]="artist" [attr.name]="'artist-card-' + artist.id"></app-artist-card>
+                    </app-scroll-container>
+                </div>
+    
+                <!--Albums section-->
+                <div *ngIf="results.albums.length > 0" name="albums-section">
+                    <h2>Albums</h2>
+                    <app-scroll-container>
+                        <app-album-card *ngFor="let album of results.albums" 
+                        [album]="album" [attr.name]="'album-card-' + album.id"></app-album-card>
+                    </app-scroll-container>
+                </div>
+    
+                <app-song-details-modal *ngIf="selectedSong" [song]="selectedSong" [isAdmin]="isAdmin"
+                    (close)="closeSongDetails()" name="song-details-modal">
+                </app-song-details-modal>
+            </section>
+        </ng-container>
+
+        <ng-template #noResultsFound>
+            <div class="results-section" name="no-results-message">
+                <h1>No results found for "{{ currentQuery }}"</h1>
+                <p>Please check your spelling or try searching for something else.</p>
+            </div>
+        </ng-template>
+
+    </div>

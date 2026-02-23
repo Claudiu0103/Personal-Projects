@@ -1,0 +1,29 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+
+.profile-dialog .mat-mdc-dialog-surface {
+  background-color: #121212 !important;
+  color: white;
+  border-radius: 8px;
+  padding: 24px;
+  max-width: 400px;
+  min-width: 400px;
+}
+
+
+.text-fitting {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}

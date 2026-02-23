@@ -1,0 +1,11 @@
+<div class="songs-wrapper">
+  <h2>Songs</h2>
+
+  <div class="songs-container">
+      <app-song-card 
+      *ngFor="let song of songs" 
+      [song]="song"
+      (click)="onSongClick(song)">
+    </app-song-card>
+  </div>
+</div>

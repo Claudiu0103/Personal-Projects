@@ -1,0 +1,51 @@
+<h2>List of users</h2>
+
+<mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+  <ng-container matColumnDef="firstName">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>First Name</mat-header-cell>
+    <mat-cell *matCellDef="let user">{{ user.firstName }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="lastName">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</mat-header-cell>
+    <mat-cell *matCellDef="let user">{{ user.lastName }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="email">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Email</mat-header-cell>
+    <mat-cell *matCellDef="let user" [matTooltip]="user.email">{{ user.email }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="country">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Country</mat-header-cell>
+    <mat-cell *matCellDef="let user">{{ user.country }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="role">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Role</mat-header-cell>
+    <mat-cell *matCellDef="let user">{{ user.role }}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="isDeleted">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>Banned</mat-header-cell>
+    <mat-cell *matCellDef="let user">{{ user.isDeleted }}</mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openUserDialog(row)"></mat-row>
+</mat-table>
+
+<div class="custom-paginator">
+  <div class="page-info">
+    Items per page:
+    <select [(ngModel)]="pageSize" (change)="onPageChangeCustom(0)">
+      <option *ngFor="let size of [5, 10, 25]" [value]="size">{{ size }}</option>
+    </select>
+  </div>
+
+  <div class="page-controls">
+    <button (click)="onPageChangeCustom(currentPage - 1)" [disabled]="currentPage === 0">‹</button>
+    <span>{{ currentPage * pageSize + 1 }} – {{ getEndIndex() }} of {{ totalItems }}</span>
+    <button (click)="onPageChangeCustom(currentPage + 1)" [disabled]="(currentPage + 1) * pageSize >= totalItems">›</button>
+  </div>
+</div>

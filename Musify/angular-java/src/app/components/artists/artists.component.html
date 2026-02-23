@@ -1,0 +1,9 @@
+<div class = "artists-page">
+    <h2>Artists</h2>
+    <div *ngIf="artists.length == 0">
+        <P>List is empty</P>
+    </div>
+    <div class = "artist-card-list">
+        <app-artist-card *ngFor="let artist of artists" [artist]="artist"></app-artist-card>
+    </div>
+</div>

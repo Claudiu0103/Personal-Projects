@@ -1,0 +1,118 @@
+$card-background: #44474e;
+$card-background-dark: #303135;
+$text-color-light: #e0e0e0;
+$text-color-dark: #cccccc;
+$profile-picture-color: #3f9bff;
+$border-radius-main: 15px;
+$border-radius-small: 8px;
+$gradient-start: #7d7de0;
+$gradient-end: #1d1d85;
+
+.album-container {
+  background: linear-gradient(135deg, #bb5bd3 0%, #6a2e85 100%);
+  font-family: 'Arial', sans-serif;
+  color: $text-color-light;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.album-header {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  padding: 1.5rem;
+
+  .title-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h1 {
+      margin: 0;
+      font-size: 2.4rem;
+      font-weight: bold;
+      color: $text-color-light;
+    }
+  }
+
+  .description {
+    font-size: 1.5rem;
+    color: $text-color-dark;
+    max-width: 800px;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .info {
+    font-size: 1rem;
+    color: $text-color-dark;
+
+    span:not(:last-child)::after {
+      content: " | ";
+      padding: 0 0.3rem;
+      color: lighten($text-color-dark, 10%);
+    }
+  }
+}
+
+button[mat-raised-button] {
+  width: 5%;
+  margin-left: auto;
+  background-color: #4e7462;
+  color: #e0e0e0;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-top: 20px;
+}
+
+.songs-section {
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: 2rem;
+    color: $text-color-light;
+  }
+
+  .song-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1rem;
+    background-color: $card-background-dark;
+    border-radius: $border-radius-small;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+
+    th,
+    td {
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    th {
+      background-color: $card-background;
+      color: $text-color-light;
+      text-transform: uppercase;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+    }
+
+    tbody tr:hover {
+      background-color: lighten($card-background-dark, 5%);
+    }
+  }
+
+  .no-songs {
+    margin-top: 1rem;
+    font-style: italic;
+    color: $text-color-dark;
+  }
+}

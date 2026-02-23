@@ -1,0 +1,61 @@
+<div class="search-wrapper">
+    
+    <div class="search-container">
+      <mat-icon>search</mat-icon>
+      <input matInput placeholder="Search songs, artists or albums" 
+        name="search"
+        [(ngModel)]="searchTerm" 
+        (ngModelChange) = "onSearchInput()" 
+        (blur) = "hideOverlay()"
+        (keydown)="onKeyDown($event)"
+        autocomplete="off">
+      <button mat-icon-button *ngIf="searchTerm" (click)="clearSearch()" aria-label="Clear search" name="clear-search-button">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+
+    <div class="search-results-overlay" *ngIf="showResultsOverlay && (searchResults$ | async) as results" name="search-results-overlay">
+      <ng-container *ngIf="results.songs.length > 0 || results.artists.length > 0 || results.albums.length > 0; else noResultsTemplate">
+        
+        <ng-container *ngIf="results.songs.length > 0">
+          <h3 mat-subheader>Songs</h3>
+          <mat-nav-list name="songs-results-list">
+            <a mat-list-item *ngFor="let song of results.songs" (click)="navigateTo(song, 'song')" [attr.data-testid]="'song-result-' + song.id">
+              <span matListItemTitle>{{ song.title }}</span>
+            </a>
+          </mat-nav-list>
+        </ng-container>
+
+        <ng-container *ngIf="results.artists.length > 0">
+          <h3 mat-subheader>Artists</h3>
+          <mat-nav-list  name="artists-results-list">
+            <a mat-list-item *ngFor="let artist of results.artists" (click)="navigateTo(artist, 'artist')" [attr.data-testid]="'artist-result-' + artist.id">
+              <span matListItemTitle>{{ artist.name }}</span>
+            </a>
+          </mat-nav-list>
+        </ng-container>
+
+        <ng-container *ngIf="results.albums.length > 0">
+          <h3 mat-subheader>Albums</h3>
+          <mat-nav-list name="albums-results-list">
+            <a mat-list-item *ngFor="let album of results.albums" (click)="navigateTo(album, 'album')" [attr.data-testid]="'album-result-' + album.id">
+              <span matListItemTitle>{{ album.title }}</span>
+            </a>
+          </mat-nav-list>
+        </ng-container>
+
+        <div class="show-all-container">
+            <button mat-flat-button (click)="goToFullSearch()" color="primary" [disabled]="searchTerm.trim().length < 3" name="show-all-results-button">
+                Show all results for "{{ searchTerm }}"
+            </button>
+        </div>
+
+      </ng-container>
+
+      <ng-template #noResultsTemplate>
+        <div class="no-results-message" name="no-results-message">
+            <p>No results found for "{{ searchTerm }}"</p>
+        </div>
+      </ng-template>
+    </div>
+  </div>
